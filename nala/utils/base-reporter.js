@@ -187,7 +187,7 @@ export default class BaseReporter {
     return { name, tags, url, browser, env, branch, repo};
   }
 
-  // eslint-disable-next-line class-methods-use-this, no-empty-function
+   
   async persistData() {}
 
   printPersistingOption() {

@@ -1,6 +1,6 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint-disable max-len */
+ 
+ 
+ 
 // eslint-disable-next-line import/no-import-module-exports
 import { expect } from '@playwright/test';
 
@@ -120,7 +120,7 @@ exports.WebUtil = class WebUtil {
  * @param {Object} cssProps - The CSS properties and expected values to verify.
  * @returns {Boolean} - True if all CSS properties match the expected values, false otherwise.
  */
-  // eslint-disable-next-line no-underscore-dangle
+   
   async verifyCSS_(locator, cssProps) {
     this.locator = locator;
     let result = true;
@@ -177,7 +177,7 @@ exports.WebUtil = class WebUtil {
  * @param {Object} attProps - The attribute properties and expected values to verify.
  * @returns {Boolean} - True if all attribute properties match the expected values, false otherwise.
  */
-  // eslint-disable-next-line no-underscore-dangle
+   
   async verifyAttributes_(locator, attProps) {
     this.locator = locator;
     let result = true;
@@ -215,7 +215,7 @@ exports.WebUtil = class WebUtil {
   async scrollPage(direction, speed) {
     const scroll = async (args) => {
       const { dir, spd } = args;
-      // eslint-disable-next-line no-promise-executor-return
+       
       const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
       const scrollHeight = () => document.body.scrollHeight;
       const start = dir === 'down' ? 0 : scrollHeight();
@@ -225,7 +225,7 @@ exports.WebUtil = class WebUtil {
       console.error(start, shouldStop(start), increment);
       for (let i = start; !shouldStop(i); i += increment) {
         window.scrollTo(0, i);
-        // eslint-disable-next-line no-await-in-loop
+         
         await delay(delayTime);
       }
     };
@@ -304,15 +304,15 @@ exports.WebUtil = class WebUtil {
         || url.includes('sstats.adobe.com/ee/or2/v1/collect')) {
         networklogs.push(url);
         const firstEvent = route.request().postDataJSON().events[0];
-        // eslint-disable-next-line no-underscore-dangle
+         
         if (firstEvent.data._adobe_corpnew.digitalData.primaryEvent) {
-          // eslint-disable-next-line no-underscore-dangle
+           
           networklogs.push(JSON.stringify(firstEvent.data._adobe_corpnew.digitalData.primaryEvent));
         }
 
-        // eslint-disable-next-line no-underscore-dangle
+         
         if (firstEvent.data._adobe_corpnew.digitalData.search) {
-          // eslint-disable-next-line no-underscore-dangle
+           
           networklogs.push(JSON.stringify(firstEvent.data._adobe_corpnew.digitalData.search));
         }
       }
@@ -332,7 +332,7 @@ exports.WebUtil = class WebUtil {
  * @param {string} project - The project identifier, defaulting to 'milo' if not provided.
  * @returns {string} - A string formatted as 'gnav|<project>|nopzn|nopzn'.
  */
-  // eslint-disable-next-line class-methods-use-this
+   
   async getGnavDaalh(project = milo) {
     return `gnav|${project}|nopzn|nopzn`;
   }
@@ -344,7 +344,7 @@ exports.WebUtil = class WebUtil {
  * @param {string} pznFileName - Manifest filename, which is sliced to its first 20 characters.
  * @returns {string} - A string formatted as 'gnav|<project>|<pznExpName>|<pznFileName>'.
  */
-  // eslint-disable-next-line class-methods-use-this, default-param-last
+   
   async getPznGnavDaalh(project = milo, pznExpName, pznFileName) {
     const slicedExpName = pznExpName.slice(0, 15);
     const slicedFileName = pznFileName.slice(0, 15);
@@ -356,7 +356,7 @@ exports.WebUtil = class WebUtil {
  * @param {number|string} counter - A counter value used to generate the section identifier.
  * @returns {string} - A string formatted as 's<counter>'.
  */
-  // eslint-disable-next-line class-methods-use-this
+   
   async getSectionDaalh(counter) {
     return `s${counter}`;
   }
@@ -369,7 +369,7 @@ exports.WebUtil = class WebUtil {
  * @param {string} pznExpName - Manifest filename, which is sliced to its first 20 characters.
  * @returns {string} - A string formatted as 'b<counter>|<slicedBlockName>|<pznExpName>|<pznExpName>'.
  */
-  // eslint-disable-next-line class-methods-use-this
+   
   async getPznBlockDaalh(blockName, counter, pznExpName, pznFileName) {
     const slicedBlockName = blockName.slice(0, 20);
     const slicedExpName = pznExpName.slice(0, 15);
@@ -385,7 +385,7 @@ exports.WebUtil = class WebUtil {
  * @param {string} [pzntext='nopzn'] - The pzntext to use when pzn is true, sliced to its first 15 characters.
  * @returns {string} - A formatted string.
  */
-  // eslint-disable-next-line class-methods-use-this
+   
   async getBlockDaalh(blockName, counter, pzn = false, pzntext = 'nopzn') {
     const slicedBlockName = blockName.slice(0, 20);
     const slicedPzntext = pzntext.slice(0, 15);
@@ -403,7 +403,7 @@ exports.WebUtil = class WebUtil {
  * @param {boolean} [pzn=false] - boolean parameter, defaulting to false.(for personalization)
  * @returns {string} - A string formatted as '<cleanedLinkText>-<counter>--<cleanedLastHeaderText>'.
  */
-  // eslint-disable-next-line class-methods-use-this
+   
   async getLinkDaall(linkText, counter, lastHeaderText, pzn = false) {
     const cleanAndSliceText = (text) => text
       ?.replace(/[^\w\s]+/g, ' ')
