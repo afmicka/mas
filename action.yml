@@ -1,0 +1,12 @@
+name: 'Nala'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: lts/*
+
+    - run: $GITHUB_ACTION_PATH/pr.run.sh
+      shell: bash
