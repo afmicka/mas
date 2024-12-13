@@ -33,7 +33,7 @@ test.describe('M@S Studio feature test suite', () => {
                 '**/auth.services.adobe.com/en_US/index.html**/',
             );
             features[0].url =
-                'https://main--mas--adobecom.aem.live/studio.html';
+                `${baseURL}/studio.html`;
             await ims.fillOutSignInForm(features[0], page);
             await expect(async () => {
                 const response = await page.request.get(features[0].url);

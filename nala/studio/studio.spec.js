@@ -18,7 +18,7 @@ export default {
                 linkUrl: '',
             },
             browserParams: '#query=',
-            tags: '@mas @mas-studio @smoke @regression',
+            tags: '@mas-studio',
         },
     ],
 };
