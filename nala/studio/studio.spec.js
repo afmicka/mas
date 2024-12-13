@@ -20,5 +20,27 @@ export default {
             browserParams: '#query=',
             tags: '@mas-studio',
         },
+        {
+            tcid: '1',
+            name: '@studio-search-field',
+            path: '/studio.html',
+            data: {
+                cardid: '206a8742-0289-4196-92d4-ced99ec4191e',
+            },
+            browserParams: '#path=nala',
+            tags: '@mas-studio',
+        },
+        {
+            tcid: '2',
+            name: '@studio-edit-title',
+            path: '/studio.html',
+            data: {
+                cardid: '206a8742-0289-4196-92d4-ced99ec4191e',
+                title: 'Automation Test Card',
+                newTitle: 'Change title',
+            },
+            browserParams: '#query=',
+            tags: '@mas-studio',
+        },
     ],
 };
