@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
-import studiopkg from './studio.spec.js';
+import studioSpec from './studio.spec.js';
 import StudioPage from './studio.page.js';
 import ims from '../libs/imslogin.js';
 
 const miloLibs = process.env.MILO_LIBS || '';
 
 let studio;
-const { features } = studiopkg;
+const { features } = studioSpec;
 
 test.beforeEach(async ({ page, browserName }) => {
     test.skip(
