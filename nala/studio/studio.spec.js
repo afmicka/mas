@@ -17,7 +17,10 @@ export default {
                 linkText: 'See terms',
                 linkUrl: '',
             },
-            browserParams: '#query=',
+            browserParams: {
+                token: '?token=',
+                query: '#query=',
+            },
             tags: '@mas-studio',
         },
         {
@@ -27,7 +30,10 @@ export default {
             data: {
                 cardid: '206a8742-0289-4196-92d4-ced99ec4191e',
             },
-            browserParams: '#path=nala',
+            browserParams: {
+                token: '?token=',
+                path: '#path=nala',
+            },
             tags: '@mas-studio',
         },
         {
@@ -39,7 +45,10 @@ export default {
                 title: 'Automation Test Card',
                 newTitle: 'Change title',
             },
-            browserParams: '#query=',
+            browserParams: {
+                token: '?token=',
+                query: '#query=',
+            },
             tags: '@mas-studio',
         },
     ],
