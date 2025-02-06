@@ -34,9 +34,19 @@ export default class StudioPage {
         this.cardIcon = page.locator('merch-icon');
         this.cardBadge = page.locator('.ccd-slice-badge');
         // Editor panel fields
+        this.editorVariant = page.locator('#card-variant');
+        this.editorSize = page.locator('#card-size');
         this.editorTitle = page.locator('#card-title input');
         this.editorSubtitle = page.locator('#card-subtitle input');
+        this.editorBadge = page.locator('#card-badge input');
         this.editorIconURL = page.locator('#icon input');
+        this.editorBackgroundURL = page.locator('#background-image input');
+        this.editorPrices = page.locator(
+            'sp-field-group >> rte-field[id="prices"] >> div[contenteditable="true"]',
+        );
+        this.editorFooter = page.locator(
+            'sp-field-group >> rte-field[id="ctas"] >> div[contenteditable="true"]',
+        );
         this.editorDescription = page.locator(
             'sp-field-group >> rte-field[id="description"] >> div[contenteditable="true"]',
         );
