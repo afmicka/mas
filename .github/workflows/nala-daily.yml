@@ -1,0 +1,34 @@
+name: Nala Daily Run
+
+on:
+  schedule:
+    - cron: "0 15 * * *"
+  workflow_dispatch:
+
+jobs:
+  platform_matrix:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+    name: Running tests
+    runs-on: ${{ matrix.os }}
+    env:
+      WORKFLOW_NAME: 'Nala Daily Run'
+      DAILY_RUN: 'true'
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Run Nala ${{ matrix.os }}
+        uses: ./
+        env:
+          IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
+          IMS_PASS: ${{ secrets.IMS_PASS }}
+      - name: Persist JSON Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nala-results
+          path: nala-results.json
+          retention-days: 30
