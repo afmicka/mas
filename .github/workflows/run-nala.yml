@@ -1,13 +1,15 @@
 name: Run Nala Tests
 
 on:
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
-        types: [opened, synchronize, reopened]
+    # Temporarily disabled while testing Milo integration
+    # push:
+    #     branches:
+    #         - main
+    # pull_request:
+    #     branches:
+    #         - main
+    #     types: [opened, synchronize, reopened]
+    workflow_dispatch:
 
 # Prevent multiple runs from happening at the same time
 concurrency:
