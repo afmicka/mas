@@ -77,7 +77,6 @@ jobs:
           echo "Running Milo tests with MAS_LIBS parameter: $MAS_LIBS"
           echo "Base URL: $PR_BRANCH_LIVE_URL"
           
-          # Run commerce tests - Milo tests will use MAS_LIBS in their URLs
           npx playwright test --grep "@commerce" --project=milo-live-chromium
         env:
           MAS_LIBS: ${{ steps.branch_info.outputs.maslibs_param }}
@@ -93,8 +92,8 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-                           body: `🚀 **Running Milo Commerce Tests with MasLibs**
-               
+              body: `🚀 **Running Milo Commerce Tests with MasLibs**
+              
 **Branch:** ${{ steps.branch_info.outputs.branch_name }}
 **Source:** ${{ steps.branch_info.outputs.repo_owner }}/mas
 **MasLibs Parameter:** \`${{ steps.branch_info.outputs.maslibs_param }}\`
