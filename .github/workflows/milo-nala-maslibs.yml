@@ -1,0 +1,105 @@
+# Triggers Milo Commerce Tests with MasLibs parameter
+# NOTE: Milo repository should add dependency caching to their nala-run.yml workflow
+# for better performance (npm cache, Playwright browsers cache)
+name: Trigger Milo Commerce Tests with MasLibs
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - main
+
+# Prevent multiple runs from happening at the same time
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  trigger-milo-tests:
+    name: Trigger Milo Commerce Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Milo repository (afmicka fork)
+        uses: actions/checkout@v4
+        with:
+          repository: afmicka/milo
+          ref: MWPW-179632
+          fetch-depth: 1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install Playwright dependencies
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps
+            
+      - name: Get branch info
+        id: branch_info
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
+            REPO_OWNER="${{ github.event.pull_request.head.repo.owner.login }}"
+          else
+            BRANCH_NAME="${{ github.ref_name }}"
+            REPO_OWNER="${{ github.repository_owner }}"
+          fi
+          
+          BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's/\//-/g')
+          MASLIBS_PARAM="?maslibs=${BRANCH_NAME}--mas--${REPO_OWNER}"
+          LIVE_URL="https://${BRANCH_NAME}--mas--${REPO_OWNER}.aem.live"
+          
+          echo "maslibs_param=${MASLIBS_PARAM}" >> $GITHUB_OUTPUT
+          echo "live_url=${LIVE_URL}" >> $GITHUB_OUTPUT
+          echo "branch_name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+          echo "repo_owner=${REPO_OWNER}" >> $GITHUB_OUTPUT
+
+      - name: Run Milo tests with MasLibs
+        run: |
+          export MAS_LIBS="${{ steps.branch_info.outputs.maslibs_param }}"
+          export PR_BRANCH_LIVE_URL="${{ steps.branch_info.outputs.live_url }}"
+          
+          echo "Running Milo tests with MAS_LIBS parameter: $MAS_LIBS"
+          echo "Base URL: $PR_BRANCH_LIVE_URL"
+          
+          # Run commerce tests - Milo tests will use MAS_LIBS in their URLs
+          npx playwright test --grep "@commerce" --project=milo-live-chromium
+        env:
+          MAS_LIBS: ${{ steps.branch_info.outputs.maslibs_param }}
+          PR_BRANCH_LIVE_URL: ${{ steps.branch_info.outputs.live_url }}
+
+      - name: Add PR comment
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+                           body: `🚀 **Running Milo Commerce Tests with MasLibs**
+               
+**Branch:** ${{ steps.branch_info.outputs.branch_name }}
+**Source:** ${{ steps.branch_info.outputs.repo_owner }}/mas
+**MasLibs Parameter:** \`${{ steps.branch_info.outputs.maslibs_param }}\`
+**Test URL:** ${{ steps.branch_info.outputs.live_url }}
+**Milo Fork:** afmicka/milo@MWPW-179632
+
+Running @commerce tests from afmicka/milo fork with MAS_LIBS environment variable support.`
+            });
