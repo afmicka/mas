@@ -76,18 +76,21 @@ jobs:
                   echo "branch_name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
                   echo "repo_owner=${REPO_OWNER}" >> $GITHUB_OUTPUT
 
-            - name: Run Milo tests with MasLibs
-              run: |
-                  export MAS_LIBS="${{ steps.branch_info.outputs.maslibs_param }}"
-                  export PR_BRANCH_LIVE_URL="${{ steps.branch_info.outputs.live_url }}"
-
-                  echo "Running Milo tests with MAS_LIBS parameter: $MAS_LIBS"
-                  echo "Base URL: $PR_BRANCH_LIVE_URL"
-
-                  npx playwright test --grep "@commerce" --project=milo-live-chromium
-              env:
-                  MAS_LIBS: ${{ steps.branch_info.outputs.maslibs_param }}
-                  PR_BRANCH_LIVE_URL: ${{ steps.branch_info.outputs.live_url }}
+                  - name: Run Milo tests with MasLibs
+        run: |
+          export MAS_LIBS="${{ steps.branch_info.outputs.maslibs_param }}"
+          export PR_BRANCH_LIVE_URL="${{ steps.branch_info.outputs.live_url }}"
+          
+          echo "Running Milo tests with MAS_LIBS parameter: $MAS_LIBS"
+          echo "Base URL: $PR_BRANCH_LIVE_URL"
+          
+          # Run with proper project name and exclude nopr tests like MAS does
+          npx playwright test --grep "@commerce" --grep-invert "nopr" --project=mas-live-chromium
+        env:
+          MAS_LIBS: ${{ steps.branch_info.outputs.maslibs_param }}
+          PR_BRANCH_LIVE_URL: ${{ steps.branch_info.outputs.live_url }}
+          IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
+          IMS_PASS: ${{ secrets.IMS_PASS }}
 
             - name: Add PR comment
               if: github.event_name == 'pull_request'
