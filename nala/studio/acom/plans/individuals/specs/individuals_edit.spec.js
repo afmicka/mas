@@ -8,7 +8,7 @@ export default {
             data: {
                 cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
             },
-            browserParams: '#query=',
+            browserParams: '#page=content&path=nala&query=',
             tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
         },
         {
@@ -18,7 +18,7 @@ export default {
             data: {
                 cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
             },
-            browserParams: '#query=',
+            browserParams: '#page=content&path=nala&query=',
             tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
         },
         {
@@ -28,126 +28,281 @@ export default {
             data: {
                 cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
             },
-            browserParams: '#query=',
+            browserParams: '#page=content&path=nala&query=',
             tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
         },
         {
             tcid: '3',
+            name: '@studio-plans-individuals-edit-RTE-fields',
+            path: '/studio.html',
+            data: {
+                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
+                title: {
+                    old: 'MAS Automation Test Card',
+                    new: 'Change title',
+                },
+                badge: {
+                    old: 'DO NOT EDIT',
+                    new: 'Change badge',
+                },
+                description: {
+                    old: 'Edit and organize photos. Save 25% for the first 6 months. Ends Feb 26.',
+                    new: 'New Test Description',
+                },
+                iconURL: {
+                    old: 'https://www.adobe.com/content/dam/shared/images/product-icons/svg/illustrator.svg',
+                    new: 'https://www.adobe.com/content/dam/shared/images/product-icons/svg/photoshop.svg',
+                },
+                calloutText: {
+                    old: 'AI Assistant add-on available',
+                    new: 'New callout text',
+                },
+                promoText: {
+                    old: 'Test promotion text',
+                    new: 'New Promo Text',
+                },
+                // price: {
+                //     old: 'US$17.24/mo',
+                //     new: 'US$17.24/moper license',
+                //     legalText: 'per license',
+                // },
+                // strikethroughPrice: {
+                //     old: 'US$34.49/mo',
+                //     new: 'US$34.49/moper license',
+                // },
+                osi: {
+                    old: 'yIcVsmjmQCHKQ-TvUJxH3-kop4ifvwoMBBzVg3qfaTg',
+                    new: '1RwmqQ0NVsrtYr1bj05lZCJBavU6JGa67djrwKE8k8o',
+                },
+                offerTypeTag: {
+                    old: 'offer_type/base',
+                    new: 'offer_type/trial',
+                },
+                marketSegmentsTag: {
+                    old: 'market_segments/com',
+                    new: 'market_segments/edu',
+                },
+                planTypeTag: {
+                    old: 'plan_type/m2m',
+                    new: 'plan_type/puf',
+                },
+                // quantitySelectorStart: {
+                //     old: '3',
+                //     new: '2',
+                // },
+                // quantitySelectorStep: {
+                //     old: '1',
+                //     new: '2',
+                // },
+                whatsIncluded: {
+                    text: 'List of items:',
+                    icon: {
+                        url: 'https://www.adobe.com/content/dam/shared/images/product-icons/svg/photoshop.svg',
+                        label: 'Photoshop icon',
+                    },
+                },
+                badgeColor: {
+                    old: 'Yellow 300',
+                    new: 'Green 900',
+                    newCSS: 'rgb(5, 131, 78)',
+                },
+                badgeBorderColor: {
+                    old: 'Yellow 300',
+                    new: 'Green 900',
+                    newCSS: 'rgb(5, 131, 78)',
+                },
+                cardBorderColor: {
+                    old: 'Yellow 300',
+                    new: 'Gray 300',
+                    newCSS: 'rgb(218, 218, 218)',
+                },
+                pricePromo: {
+                    old: 'UMRM2MUSPr501YOC',
+                    new: 'testpromo',
+                },
+                phoneNumber: '1234567890',
+                // ctaVariant: {
+                //     old: 'accent',
+                //     new: 'primary-outline',
+                //     oldCSS: {
+                //         'background-color': 'rgb(59, 99, 251)',
+                //         color: 'rgb(255, 255, 255)',
+                //     },
+                //     newCSS: {
+                //         color: 'rgb(44, 44, 44)',
+                //     },
+                // },
+                // checkoutParams: {
+                //     mv: '1',
+                //     promoid: 'ABC123',
+                //     mv2: '2',
+                // },
+                // cta: {
+                //     text: {
+                //         old: 'Buy now',
+                //         newOption: 'Save now',
+                //         new: 'save-now',
+                //     },
+                //     workflowStep: {
+                //         old: 'email',
+                //         newOption: 'Segmentation',
+                //         new: 'segmentation',
+                //     },
+                //     ucv3: {
+                //         old: 'commerce.adobe.com/store/email',
+                //         new: 'commerce.adobe.com/store/segmentation',
+                //     },
+                //     label: {
+                //         old: 'Buy now',
+                //         new: 'Buy now 2',
+                //     },
+                //     promo: {
+                //         old: 'FY25PLES256MROW',
+                //         new: 'testpromo',
+                //     },
+                //     country: 'US',
+                //     ctx: 'fp',
+                //     lang: 'en',
+                //     client: 'adobe_com',
+                //     promoCode: 'FY25PLES256MROW',
+                // },
+                legalDisclaimer: {
+                    text: 'per licenseAnnual, billed monthly',
+                    cardText: 'per license',
+                    osi: 'r_JXAnlFI7xD6FxWKl2ODvZriLYBoSL701Kd1hRyhe8',
+                },
+                // stockCheckbox: {
+                //     initialState: true, // Initially checked
+                //     toggleState: false, // After first toggle
+                //     finalState: true, // After toggling back
+                // },
+            },
+            browserParams: '#page=content&path=nala&query=',
+            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
+        },
+        {
+            tcid: '4',
+            name: '@studio-plans-individuals-edit-cta-link',
+            path: '/studio.html',
+            data: {
+                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
+                cta: {
+                    variant: {
+                        old: 'accent',
+                        new: 'primary-outline',
+                        oldCSS: {
+                            'background-color': 'rgb(59, 99, 251)',
+                            color: 'rgb(255, 255, 255)',
+                        },
+                        newCSS: {
+                            color: 'rgb(44, 44, 44)',
+                        },
+                    },
+                    checkoutParams: {
+                        mv: '1',
+                        promoid: 'ABC123',
+                        mv2: '2',
+                    },
+                    label: {
+                        old: 'Buy now',
+                        new: 'Buy now 2',
+                    },
+                },
+            },
+            browserParams: '#page=content&path=nala&query=',
+            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
+        },
+        {
+            tcid: '5',
+            name: '@studio-plans-individuals-edit-price-ost',
+            path: '/studio.html',
+            data: {
+                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
+                price: {
+                    old: 'US$17.24/mo',
+                    new: 'US$17.24/moper license',
+                    legalText: 'per license',
+                },
+                strikethroughPrice: {
+                    old: 'US$34.49/mo',
+                    new: 'US$34.49/moper license',
+                },
+                promo: {
+                    old: 'UMRM2MUSPr501YOC',
+                    new: 'testpromo',
+                },
+            },
+            browserParams: '#page=content&path=nala&query=',
+            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
+        },
+        {
+            tcid: '6',
+            name: '@studio-plans-individuals-edit-cta-ost',
+            path: '/studio.html',
+            data: {
+                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
+                osi: 'yIcVsmjmQCHKQ-TvUJxH3-kop4ifvwoMBBzVg3qfaTg',
+                promo: {
+                    old: 'FY25PLES256MROW',
+                    new: 'testpromo',
+                },
+                cta: {
+                    text: {
+                        old: 'Buy now',
+                        newOption: 'Save now',
+                        new: 'save-now',
+                    },
+                    workflowStep: {
+                        old: 'email',
+                        newOption: 'Segmentation',
+                        new: 'segmentation',
+                    },
+                    ucv3: {
+                        old: 'commerce.adobe.com/store/email',
+                        new: 'commerce.adobe.com/store/segmentation',
+                    },
+                    label: {
+                        old: 'Buy now',
+                        new: 'Buy now 2',
+                    },
+                    country: 'US',
+                    ctx: 'fp',
+                    lang: 'en',
+                    client: 'adobe_com',
+                },
+            },
+            browserParams: '#page=content&path=nala&query=',
+            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
+        },
+        {
+            tcid: '7',
             name: '@studio-plans-individuals-edit-size',
             path: '/studio.html',
             data: {
                 cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
             },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '4',
-            name: '@studio-plans-individuals-edit-title',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                title: 'MAS Automation Test Card',
-                newTitle: 'Change title',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '5',
-            name: '@studio-plans-individuals-edit-badge',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                badge: 'DO NOT EDIT',
-                newBadge: 'Change badge',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '6',
-            name: '@studio-plans-individuals-edit-description',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                description: 'Edit and organize photos. Save 25% for the first 6 months. Ends Feb 26.',
-                newDescription: 'New Test Description',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '7',
-            name: '@studio-plans-individuals-edit-mnemonic',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                iconURL: 'https://www.adobe.com/content/dam/shared/images/product-icons/svg/illustrator.svg',
-                newIconURL: 'https://www.adobe.com/content/dam/shared/images/product-icons/svg/photoshop.svg',
-            },
-            browserParams: '#query=',
+            browserParams: '#page=content&path=nala&query=',
             tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
         },
         {
             tcid: '8',
-            name: '@studio-plans-individuals-edit-callout',
+            name: '@studio-plans-individuals-edit-remove',
             path: '/studio.html',
             data: {
                 cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                calloutText: 'AI Assistant add-on available',
-                newCalloutText: 'New callout text',
+                whatsIncluded: {
+                    text: 'List of items:',
+                    icon: {
+                        url: 'https://www.adobe.com/content/dam/shared/images/product-icons/svg/photoshop.svg',
+                        label: 'Photoshop icon',
+                    },
+                },
             },
-            browserParams: '#query=',
+            browserParams: '#page=content&path=nala&query=',
             tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
         },
         {
             tcid: '9',
-            name: '@studio-plans-individuals-edit-promo-text',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                promoText: 'Test promotion text',
-                newPromoText: 'New Promo Text',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '10',
-            name: '@studio-plans-individuals-edit-price',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                price: 'US$17.24/mo',
-                strikethroughPrice: 'US$34.49/mo',
-                newPrice: 'US$17.24/moper license',
-                newStrikethroughPrice: 'US$34.49/moper license',
-                legalText: 'per license',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '11',
-            name: '@studio-plans-individuals-edit-osi',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                osi: 'yIcVsmjmQCHKQ-TvUJxH3-kop4ifvwoMBBzVg3qfaTg',
-                offerTypeTag: 'offer_type/base',
-                marketSegmentsTag: 'market_segments/com',
-                planTypeTag: 'plan_type/m2m',
-                newosi: '1RwmqQ0NVsrtYr1bj05lZCJBavU6JGa67djrwKE8k8o',
-                newPlanTypeTag: 'plan_type/puf',
-                newOfferTypeTag: 'offer_type/trial',
-                newMarketSegmentsTag: 'market_segments/edu',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '12',
             name: '@studio-plans-individuals-edit-stock-checkbox',
             path: '/studio.html',
             data: {
@@ -157,7 +312,7 @@ export default {
             tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit @nopr',
         },
         {
-            tcid: '13',
+            tcid: '10',
             name: '@studio-plans-individuals-edit-quantity-selector',
             path: '/studio.html',
             data: {
@@ -166,185 +321,6 @@ export default {
                 newStartValue: '2',
                 stepValue: '1',
                 newStepValue: '2',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '14',
-            name: '@studio-plans-individuals-edit-whats-included',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                whatsIncludedText: 'List of items:',
-                iconURL: 'https://www.adobe.com/content/dam/shared/images/product-icons/svg/photoshop.svg',
-                iconLabel: 'Photoshop icon',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '15',
-            name: '@studio-plans-individuals-edit-badge-color',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                color: 'Yellow 300',
-                newColor: 'Green 900',
-                newColorCSS: 'rgb(5, 131, 78)',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '16',
-            name: '@studio-plans-individuals-edit-badge-border-color',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                color: 'Yellow 300',
-                newColor: 'Green 900',
-                newColorCSS: 'rgb(5, 131, 78)',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '17',
-            name: '@studio-plans-individuals-edit-card-border-color',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                color: 'Yellow 300',
-                newColor: 'Gray 300',
-                newColorCSS: 'rgb(218, 218, 218)',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '18',
-            name: '@studio-plans-individuals-edit-price-promo',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                promo: 'UMRM2MUSPr501YOC',
-                newPromo: 'testpromo',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '19',
-            name: '@studio-plans-individuals-phone-number',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                phoneNumber: '1234567890',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '20',
-            name: '@studio-plans-individuals-edit-cta-variant',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                osi: 'yIcVsmjmQCHKQ-TvUJxH3-kop4ifvwoMBBzVg3qfaTg',
-                variant: 'accent',
-                ctaCSS: {
-                    'background-color': 'rgb(59, 99, 251)',
-                    color: 'rgb(255, 255, 255)',
-                },
-                newCtaCSS: {
-                    color: 'rgb(44, 44, 44)',
-                },
-                newVariant: 'primary-outline',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '21',
-            name: '@studio-plans-individuals-edit-cta-checkout-params',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                osi: 'yIcVsmjmQCHKQ-TvUJxH3-kop4ifvwoMBBzVg3qfaTg',
-                checkoutParams: {
-                    mv: '1',
-                    promoid: 'ABC123',
-                    mv2: '2',
-                },
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '22',
-            name: '@studio-plans-individuals-edit-cta-ost',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                osi: 'yIcVsmjmQCHKQ-TvUJxH3-kop4ifvwoMBBzVg3qfaTg',
-                ctaText: 'Buy now',
-                newCtaOption: 'Save now',
-                newCtaText: 'save-now',
-                workflowStep: 'email',
-                newWorkflowOption: 'Segmentation',
-                newWorkflowStep: 'segmentation',
-                ucv3: 'commerce.adobe.com/store/email',
-                newUcv3: 'commerce.adobe.com/store/segmentation',
-                country: 'US',
-                ctx: 'fp',
-                lang: 'en',
-                client: 'adobe_com',
-                promo: 'FY25PLES256MROW',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '23',
-            name: '@studio-plans-individuals-edit-cta-label',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                osi: 'yIcVsmjmQCHKQ-TvUJxH3-kop4ifvwoMBBzVg3qfaTg',
-                ctaText: 'Buy now',
-                newCtaText: 'Buy now 2',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '24',
-            name: '@studio-plans-individuals-edit-cta-promo',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                promo: 'FY25PLES256MROW',
-                newPromo: 'testpromo',
-                ucv3: 'commerce.adobe.com/store/email',
-                country: 'US',
-                ctx: 'fp',
-                lang: 'en',
-                client: 'adobe_com',
-            },
-            browserParams: '#query=',
-            tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
-        },
-        {
-            tcid: '25',
-            name: '@studio-plans-individuals-add-description-price-legal-disclamer',
-            path: '/studio.html',
-            data: {
-                cardid: '2cbfced4-111c-4099-ae9e-65e2c16d8e69',
-                osi: 'yIcVsmjmQCHKQ-TvUJxH3-kop4ifvwoMBBzVg3qfaTg',
-                newosi: 'r_JXAnlFI7xD6FxWKl2ODvZriLYBoSL701Kd1hRyhe8',
-                legalDisclaimer: 'per licenseAnnual, billed monthly',
-                cardLegalDisclaimer: 'per license',
             },
             browserParams: '#query=',
             tags: '@mas-studio @acom @acom-plans @acom-plans-individuals @acom-plans-individuals-edit',
