@@ -63,9 +63,22 @@ test.describe('M@S Studio ACOM Plans Tax Label Defaults test suite', () => {
                     }
 
                     // Wait for commerce elements to load within the card
+                    let pricesFound = false;
                     try {
-                        // Wait for price elements within the card context
-                        await card.locator('span[is="inline-price"]').first().waitFor({ state: 'visible', timeout: 20000 });
+                        // Wait for at least one inline-price element to exist within the card
+                        await page.waitForFunction(
+                            (cardId) => {
+                                const cardElement = document.querySelector(
+                                    `merch-card:has(aem-fragment[fragment="${cardId}"])`,
+                                );
+                                if (!cardElement) return false;
+                                const prices = cardElement.querySelectorAll('span[is="inline-price"]');
+                                return prices.length > 0;
+                            },
+                            cardid,
+                            { timeout: 20000 },
+                        );
+                        pricesFound = true;
 
                         // Wait for placeholders to be resolved within the card
                         await page.waitForFunction(
@@ -83,13 +96,58 @@ test.describe('M@S Studio ACOM Plans Tax Label Defaults test suite', () => {
                             cardid,
                             { timeout: 20000 },
                         );
+                        
+                        // Wait for prices to stabilize - check that price count doesn't change for 3 seconds
+                        let lastPriceCount = 0;
+                        let stableCount = 0;
+                        const maxWaitTime = 30000; // 30 seconds max
+                        const stableTime = 3000; // 3 seconds of stability
+                        const pollInterval = 500; // Check every 500ms
+                        const startTime = Date.now();
+                        
+                        while (Date.now() - startTime < maxWaitTime) {
+                            const currentPriceCount = await page.evaluate(
+                                (cardId) => {
+                                    const cardElement = document.querySelector(
+                                        `merch-card:has(aem-fragment[fragment="${cardId}"])`,
+                                    );
+                                    if (!cardElement) return 0;
+                                    return cardElement.querySelectorAll('span[is="inline-price"]').length;
+                                },
+                                cardid,
+                            );
+                            
+                            if (currentPriceCount === lastPriceCount && currentPriceCount > 0) {
+                                stableCount += pollInterval;
+                                if (stableCount >= stableTime) {
+                                    break; // Prices have been stable for stableTime
+                                }
+                            } else {
+                                stableCount = 0; // Reset stability counter
+                                lastPriceCount = currentPriceCount;
+                            }
+                            
+                            await page.waitForTimeout(pollInterval);
+                        }
                     } catch (error) {
-                        errors.push(
-                            `No commerce elements found on page (no commerce elements visible and no placeholders resolved): ${error.message}`,
-                        );
+                        if (!pricesFound) {
+                            errors.push(
+                                `No commerce elements found on page (no price elements found and no placeholders resolved): ${error.message}`,
+                            );
+                        } else {
+                            errors.push(`Placeholders not resolved on page or prices did not stabilize: ${error.message}`);
+                        }
                     }
 
                     await page.waitForTimeout(2000);
+
+                    // Find all prices within the card - they should be in order: INDIVIDUAL_COM, TEAM_COM, INDIVIDUAL_EDU, TEAM_EDU
+                    const allPrices = await card.locator('span[is="inline-price"]').all();
+                    
+                    // If no prices found, add error and skip tax label validation
+                    if (allPrices.length === 0) {
+                        errors.push('No price elements found on page (span[is="inline-price"])');
+                    }
 
                     // Get expected tax labels for this locale (locale-based mapping)
                     let expectedLabels = getLocaleTaxLabels(locale);
@@ -98,9 +156,6 @@ test.describe('M@S Studio ACOM Plans Tax Label Defaults test suite', () => {
                     if (!expectedLabels) {
                         expectedLabels = [null, null, null, null];
                     }
-
-                    // Find all prices within the card - they should be in order: INDIVIDUAL_COM, TEAM_COM, INDIVIDUAL_EDU, TEAM_EDU
-                    const allPrices = await card.locator('span[is="inline-price"]').all();
                     const segmentNames = ['INDIVIDUAL_COM', 'TEAM_COM', 'INDIVIDUAL_EDU', 'TEAM_EDU'];
                     const priceCount = allPrices.length;
 

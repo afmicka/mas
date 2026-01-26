@@ -37,7 +37,6 @@ export default {
   'LV_lv': ['ar PVN', 'bez PVN', 'ar PVN', null],
   'NL_nl': ['incl. btw', 'excl. btw', 'incl. btw', 'excl. btw'],
   'NO_nb': ['inkl. mva', 'ekskl. mva', 'inkl. mva', 'ekskl. mva'],
-  'MU_en': ['incl. VAT', 'incl. VAT', null, null],
   'PL_pl': ['w tym VAT', 'bez VAT', 'w tym VAT', 'bez VAT'],
   'PT_pt': ['IVA incluso', 'IVA não incluso', 'IVA incluso', 'IVA não incluso'],
   'RO_ro': ['cu TVA', 'fără TVA', 'cu TVA', 'fără TVA'],
@@ -65,10 +64,11 @@ export default {
   // Middle East & Africa
   'EG_ar': ['بالضريبة', 'باستثناء ضريبة', 'بالضريبة', 'باستثناء ضريبة'],
   'EG_en': ['incl. VAT', 'excl. VAT', 'incl. VAT', 'excl. VAT'],
+  'MU_en': ['excl. VAT', 'excl. VAT', 'excl. VAT', 'excl. VAT'],
   'NG_en': ['incl. VAT', 'incl. VAT', null, null],
   'SA_ar': ['بالضريبة', null, 'بالضريبة', null],
   'SA_en': ['incl. VAT', null, 'incl. VAT', null],
-  'ZA_en': ['incl. VAT', 'excl. VAT', 'incl. VAT', 'excl. VAT'],
+  'ZA_en': ['incl. VAT', 'incl. VAT', null, null],
 
   // Latin America
   'CO_es': [null, 'IVA no incluido', null, null],
@@ -85,10 +85,11 @@ export default {
   'CA_en': [null, null, null, null],
   'CA_fr': [null, null, null, null],
   'US_en': [null, null, null, null],
+  // US has urlPrefix 'pr' which creates 'PR_en' key
+  'PR_en': [null, null, null, null],
   'HK_en': [null, null, null, null],
   'HK_zh': [null, null, null, null],
   'TW_zh': [null, null, null, null],
-  'CN_zh': [null, null, null, null],
 
   // Middle East & Africa - no tax labels
   'CY_en': [null, null, null, null],
@@ -98,12 +99,11 @@ export default {
   'KW_ar': [null, null, null, null],
   'QA_en': [null, null, null, null],
   'QA_ar': [null, null, null, null],
-  // MU has urlPrefix 'africa' which creates 'AFRICA_en' key
-  'AFRICA_en': [null, null, null, null],
 
   // Other regions - no tax labels
   'IL_iw': [null, null, null, null],
   'IL_en': [null, null, null, null],
+  'IL_he': [null, null, null, null],
   'MT_en': [null, null, null, null],
   'PH_en': [null, null, null, null],
   'PH_fil': [null, null, null, null],
@@ -115,7 +115,4 @@ export default {
   'CIS_ru': [null, null, null, null],
   'VN_en': [null, null, null, null],
   'VN_vi': [null, null, null, null],
-  // US has urlPrefix 'pr' which creates 'PR_en' key
-  'PR_en': [null, null, null, null],
 };
-
