@@ -6799,6 +6799,14 @@ merch-card span.price.price-strikethrough {
   color: var(--merch-color-inline-price-strikethrough);
 }
 
+mas-field span.placeholder-resolved[data-template='priceStrikethrough'],
+mas-field span.placeholder-resolved[data-template='strikethrough'],
+mas-field span.price.price-strikethrough,
+mas-field span.price.price-promo-strikethrough {
+  text-decoration: line-through;
+  color: var(--merch-color-inline-price-strikethrough);
+}
+
 merch-card [slot^="body-"] ul {
     margin: 0;
     padding-inline-start: var(--merch-card-ul-padding);
@@ -6889,6 +6897,10 @@ sr-only {
 
 aem-fragment {
   display: contents;
+}
+
+mas-field {
+  display: inline;
 }
 
 merch-card [slot='callout-content'] .icon-button {
