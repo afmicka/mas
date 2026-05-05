@@ -53,12 +53,6 @@ Promise.all([
     }),
     build({
         ...defaults,
-        entryPoints: ['./src/merch-card-collection.js'],
-        plugins: [rewriteImportsToLibsFolder()],
-        outfile: `${outfolder}/merch-card-collection.js`,
-    }),
-    build({
-        ...defaults,
         entryPoints: ['./src/sidenav/merch-sidenav.js'],
         outfile: `${outfolder}/merch-sidenav.js`,
         plugins: [rewriteImportsToLibsFolder()],
@@ -69,6 +63,7 @@ Promise.all([
         outfile: `${outfolder}/mas-field.js`,
     }),
     buildLitComponent('merch-card'),
+    buildLitComponent('merch-card-collection'),
     buildLitComponent('merch-icon'),
     buildLitComponent('merch-quantity-select'),
     buildLitComponent('merch-secure-transaction'),
